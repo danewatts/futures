@@ -1,6 +1,7 @@
 package controllers.pets
 
 import connectors.pets.{PetConnector, PetNotFoundException}
+import utils.Logger
 
 import scala.concurrent.Future
 import scala.concurrent.ExecutionContext.Implicits.global
@@ -40,6 +41,7 @@ trait PetController {
     case _: PetNotFoundException =>
       0
     case e: Exception =>
+      Logger.error("An error occured", e)
       throw e
   }
 
